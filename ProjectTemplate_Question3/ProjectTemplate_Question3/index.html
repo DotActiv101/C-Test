@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html ng-app="BlockApp">
+<head>
+    <title>Block Moving</title>
+	<meta charset="utf-8" />
+
+    <link href="Resources/Style/CustomStyling.css" rel="stylesheet" />
+
+</head>
+<body ng-controller="BlockController">
+
+    <h3>{{blockDraggedSentence}}</h3>
+
+    <div style="width: 600px; margin-top: 50px;">
+        <div ng-repeat="person in people" style="display:inline-block;">
+            <div class="dragBlock" ng-drag="true" ng-drag-data="person" data-allow-transform="true">
+                {{person.firstName}} {{person.lastName}}
+            </div>
+        </div>
+    </div>
+    <div class="dropBlock" ng-drop="true" ng-drop-success="DropSuccess($data, $event)">
+
+        Drop Zone
+    </div>
+
+    <script src="Resources/Vendors/angular.min.js"></script>
+    <script src="Resources/Vendors/ngDraggable.js"></script>
+
+    <script src="Resources/DevJS/app.js"></script>
+    <script src="Resources/DevJS/controllers/BlockController.js"></script>
+    <script src="Resources/DevJS/services/BlockService.js"></script>
+
+</body>
+</html>

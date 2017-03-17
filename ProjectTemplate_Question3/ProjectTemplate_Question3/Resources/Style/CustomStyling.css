@@ -1,0 +1,32 @@
+﻿.dragBlock {
+    width: 100px;
+    height: 100px;
+    background-color:dodgerblue;
+    color: white;
+    text-align: center;
+    padding-top: 40px;
+    display: inline-block;
+    margin: 0 10px;
+    cursor: move;
+}
+
+.dropBlock {
+    background-color: lightgray;
+    margin-top: 50px;
+    width: 500px;
+    height: 500px;
+    text-align: center;
+    padding: 50px;
+}
+
+[ng-drag].drag-over {
+    border: solid 1px red;
+}
+
+[ng-drag].dragging {
+    opacity: 0.5;
+}
+
+[ng-drop].drag-enter {
+    border: solid 5px red;
+}
