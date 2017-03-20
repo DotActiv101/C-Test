@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace PascalsTriangle
+{
+    class PascalTriangleApp
+    {
+        public static void Main(String[] args)
+        {
+            bool tryAgain = true;
+            while (tryAgain)
+            {
+                
+                try
+                {
+                    
+                    Console.WriteLine("Welcome!");
+
+                    Console.WriteLine("\nPress 'ESC' at any point to terminate the program, and press 'Enter' to proceed."); // Some user friendly interaction
+
+                    if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                    {
+                        System.Diagnostics.Process.GetCurrentProcess().Kill(); // instant termination of program
+                    }
+                    PascalTriangle pt = new PascalTriangle();
+                    Console.WriteLine("\nEnter Row Number: ");
+
+                    int row = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("\nEnter Column Number: \n");
+                    int col = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("\nThe value at row " + row + " and column " + col + " is: \n");
+                    Console.WriteLine(pt.getPascalTriangleValueAt(row -1, col -1));
+                    Console.ReadLine();
+                    tryAgain = false;
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Only numerical values are allowed!");
+                    Console.ReadLine();
+                    tryAgain = true;
+
+                }
+            }
+        }
+
+    }
+    class PascalTriangle
+    {
+
+        public PascalTriangle()
+        {
+            //default constructor
+        }
+        public int getPascalTriangleValueAt(int row, int col) // Recursive Method that calls itself with parameters received by user input
+        {
+            if (col > row)
+            {
+                Console.WriteLine("The Pascal Triangle has not reached that size!"); 
+            }
+
+            if (row == 0 || row == 1)
+                return 1;
+            if (col == 0 || col == row)
+                return 1;
+            int currentVal = getPascalTriangleValueAt(row - 1, col - 1) + getPascalTriangleValueAt(row - 1, col);
+            return currentVal;
+
+        }
+
+    }
+
+}
+
