@@ -1,1 +1,0 @@
-﻿var blockApp = angular.module('BlockApp', ['ngDraggable']);
