@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html ng-app="TTTApp">
+<head>
+    <title>Tic Tac Toe</title>
+	<meta charset="utf-8" />
+
+    <link href="Resources/Style/CustomStyling.css" rel="stylesheet" />
+
+</head>
+
+<body ng-controller="TTTController">
+    <!--Board section-->
+    <div class="gameBoard">
+        <!--Piece selection-->
+        <div ng-if="gameboard.userPiece == ''">
+            <span class="header">Select your piece:</span>
+            <span class="header">(Cross always makes first move)</span>
+            <div class="tttPieceBox" ng-click="gameboard.userPiece = 'Cross'; DropSuccess('');">
+                <div class="tttCross"></div>
+            </div>
+            <div class="tttPieceBox" ng-click="gameboard.userPiece = 'Naught'; DropSuccess('');">
+                <div class="tttNaught"></div>
+            </div>
+            <div class="tttPieceBox" ng-click="gameboard.userPiece = GetRandomPiece(); DropSuccess('');">
+                <span class="header">RANDOM</span>
+            </div>
+        </div>
+        
+        <div class="playing" ng-if="gameboard.userPiece">
+            <!--Piece section-->
+            <span class="header" ng-if="gameboard.result == 'Undecided'">Drag your piece to an empty square:</span>
+            <span class="header" ng-if="gameboard.result != 'Undecided'">{{gameboard.result}}</span>
+            <div class="tttPieceBox" ng-if="gameboard.userPiece == 'Cross' && gameboard.result == 'Undecided'" ng-drag="true">
+                <div class="tttCross"></div>
+            </div>
+            <div class="tttPieceBox" ng-if="gameboard.userPiece == 'Naught' && gameboard.result == 'Undecided'" ng-drag="true">
+                <div class="tttNaught"></div>
+            </div>
+
+            <!--Place section-->
+            <div class="row" ng-if="gameboard.result == 'Undecided'" ng-repeat="row in gameboard.rows">
+                <div ng-repeat="block in row.blocks">
+                    <div class="block" ng-if="block.piece == ''" ng-drop="true" ng-drop-success="block.piece = gameboard.userPiece; gameboard.status = 'UserMove'; DropSuccess(row.block);"></div>
+                    <div class="block" ng-if="block.piece">
+                        <div class="tttPieceBox" ng-if="block.piece == 'Cross'" ng-drag="true">
+                            <div class="tttCross"></div>
+                        </div>
+                        <div class="tttPieceBox" ng-if="block.piece == 'Naught'" ng-drag="true">
+                            <div class="tttNaught"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="gameboard.result != 'Undecided' && gameboard">
+            <span class="header">New Game?</span>
+            <div class="tttPieceBox" ng-click="reloadRoute();">
+                <span class="header">YES</span>
+            </div>
+            <div class="tttPieceBox" ng-click="getStatistics();">
+                <span class="header">NO</span>
+            </div>
+            <div ng-if="statistics">
+                <span class="header">Statistics:</span>
+                <span class="header">Wins: {{statistics.Win}}</span>
+                <span class="header">Losses: {{statistics.Lose}}</span>
+                <span class="header">Draws: {{statistics.Draw}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!--Incluce scripts-->
+    <script src="Resources/Vendors/angular.min.js"></script>
+    <script src="Resources/Vendors/ngDraggable.js"></script>
+
+    <script src="Resources/DevJS/app.js"></script>
+    <script src="Resources/DevJS/controllers/TTTController.js"></script>
+    <script src="Resources/DevJS/services/TTTService.js"></script>
+
+</body>
+</html>

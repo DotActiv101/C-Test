@@ -1,0 +1,124 @@
+﻿.gameBoard {
+    margin: 50px;
+    width: 430px;
+    height: 430px;
+}
+
+.gameBoard .header {
+    font-size: 20px;
+    font-weight: bold;
+    display:block;
+    width: 100%;
+}
+
+.gameBoard .result {
+    font-size: 100px;
+    font-weight: bold;
+    display:block;
+    width: 100%;
+}
+
+.tttPieceBox {
+    position: relative;
+    display: inline-flex;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    line-height: 100px;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    border: solid 1px grey;
+}
+
+.playing .tttPieceBox {
+    display: block;
+}
+
+.tttCross {
+    width: 100px;
+    height: 100px;
+}
+
+.tttCross:after, .tttCross:before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 133.43%;
+    top: 50%;
+    left: -17px;
+    margin-top: -5px;
+    background: black;
+    height: 8px;
+    margin-top: -4px;
+}
+
+.tttCross:after {
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+
+.tttCross:before {
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    transform:rotate(-45deg);
+}
+
+.tttNaught {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    overflow: hidden;
+}
+
+.tttNaught:after {
+    content: '';
+    position:absolute;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    top: 7.5%;
+    left: 7.5%;
+    width: 85px;
+    height: 85px;
+    background-color: white;
+}
+
+.gameBoard .row {
+    float:left;
+    background-color: lightgray;
+}
+
+.gameBoard .block {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    display:inline;
+    float:left;
+    border: solid 4px blue;
+}
+
+.gameBoard .block .tttPieceBox {
+    margin: 0px;
+    cursor: auto;
+}
+
+.gameBoard .block .tttNaught::after {
+    background-color: lightgray;
+}
+
+[ng-drag].drag-over {
+    border: solid 1px red;
+}
+
+[ng-drag].dragging {
+    opacity: 0.5;
+}
+
+[ng-drop].drag-enter {
+    border: solid 4px red;
+}
